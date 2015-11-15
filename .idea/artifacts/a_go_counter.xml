@@ -1,0 +1,20 @@
+<component name="ArtifactManager">
+  <artifact type="javafx" build-on-make="true" name="a-go-counter">
+    <output-path>$PROJECT_DIR$/out/artifacts/a_go_counter</output-path>
+    <properties id="javafx-properties">
+      <options>
+        <option name="appClass" value="aoetk.tools.a_go.Main" />
+        <option name="description" value="" />
+        <option name="htmlParamFile" value="" />
+        <option name="paramFile" value="" />
+        <option name="title" value="" />
+        <option name="vendor" value="" />
+      </options>
+    </properties>
+    <root id="root">
+      <element id="archive" name="a_go_counter.jar">
+        <element id="module-output" name="a-go-counter" />
+      </element>
+    </root>
+  </artifact>
+</component>
