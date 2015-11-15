@@ -1,0 +1,98 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.geometry.*?>
+<?import javafx.scene.control.*?>
+<?import javafx.scene.text.*?>
+<?import java.lang.*?>
+<?import javafx.scene.layout.*?>
+
+<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="239.0" prefWidth="431.0" xmlns="http://javafx.com/javafx/8.0.40" xmlns:fx="http://javafx.com/fxml/1" fx:controller="aoetk.tools.a_go.Controller">
+   <children>
+      <Text layoutX="14.0" layoutY="39.0" strokeType="OUTSIDE" strokeWidth="0.0" style="-fx-font-size: 2em;" text="あ号カウンタ" />
+      <RadioButton fx:id="normalRadio" layoutX="145.0" layoutY="54.0" mnemonicParsing="false" selected="true" text="通常戦" />
+      <RadioButton fx:id="bossRadio" layoutX="223.0" layoutY="54.0" mnemonicParsing="false" text="ボス戦" />
+      <Button layoutX="129.0" layoutY="87.0" mnemonicParsing="false" onAction="#handleLooseButtonAction" prefHeight="26.0" prefWidth="53.0" text="敗北" />
+      <Button layoutX="188.0" layoutY="87.0" mnemonicParsing="false" onAction="#handleWinButtonAction" prefHeight="26.0" prefWidth="53.0" text="勝利" />
+      <Button layoutX="247.0" layoutY="87.0" mnemonicParsing="false" onAction="#handleSWinButtonAction" text="S勝利" />
+      <GridPane gridLinesVisible="true" layoutX="14.0" layoutY="126.0">
+        <columnConstraints>
+          <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
+          <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
+            <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
+            <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
+        </columnConstraints>
+        <rowConstraints>
+          <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+          <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+        </rowConstraints>
+         <children>
+            <Label text="出撃">
+               <GridPane.margin>
+                  <Insets bottom="5.0" left="5.0" right="5.0" top="5.0" />
+               </GridPane.margin>
+            </Label>
+            <Label text="S勝利" GridPane.columnIndex="1">
+               <GridPane.margin>
+                  <Insets bottom="5.0" left="5.0" right="5.0" top="5.0" />
+               </GridPane.margin>
+            </Label>
+            <Label text="ボス到達" GridPane.columnIndex="2">
+               <GridPane.margin>
+                  <Insets bottom="5.0" left="5.0" right="5.0" top="5.0" />
+               </GridPane.margin>
+            </Label>
+            <Label text="ボス戦勝利" GridPane.columnIndex="3">
+               <GridPane.margin>
+                  <Insets bottom="5.0" left="5.0" right="5.0" top="5.0" />
+               </GridPane.margin>
+            </Label>
+            <TextFlow GridPane.rowIndex="1">
+               <children>
+                  <Text fx:id="sallyText" strokeType="OUTSIDE" strokeWidth="0.0" text="55" />
+                  <Text strokeType="OUTSIDE" strokeWidth="0.0" text=" (" />
+                  <Text fx:id="sallyDiffText" strokeType="OUTSIDE" strokeWidth="0.0" text="+19" />
+                  <Text strokeType="OUTSIDE" strokeWidth="0.0" text=")" />
+               </children>
+               <GridPane.margin>
+                  <Insets bottom="5.0" left="5.0" right="5.0" top="5.0" />
+               </GridPane.margin>
+            </TextFlow>
+            <TextFlow GridPane.columnIndex="1" GridPane.rowIndex="1">
+               <children>
+                  <Text fx:id="sWinText" strokeType="OUTSIDE" strokeWidth="0.0" text="55" />
+                  <Text strokeType="OUTSIDE" strokeWidth="0.0" text=" (" />
+                  <Text fx:id="sWinDiffText" strokeType="OUTSIDE" strokeWidth="0.0" text="+19" />
+                  <Text strokeType="OUTSIDE" strokeWidth="0.0" text=")" />
+               </children>
+               <GridPane.margin>
+                  <Insets bottom="5.0" left="5.0" right="5.0" top="5.0" />
+               </GridPane.margin>
+            </TextFlow>
+            <TextFlow GridPane.columnIndex="2" GridPane.rowIndex="1">
+               <children>
+                  <Text fx:id="bossAccessionText" strokeType="OUTSIDE" strokeWidth="0.0" text="55" />
+                  <Text strokeType="OUTSIDE" strokeWidth="0.0" text=" (" />
+                  <Text fx:id="bossAccessionDiffText" strokeType="OUTSIDE" strokeWidth="0.0" text="+19" />
+                  <Text strokeType="OUTSIDE" strokeWidth="0.0" text=")" />
+               </children>
+               <GridPane.margin>
+                  <Insets bottom="5.0" left="5.0" right="5.0" top="5.0" />
+               </GridPane.margin>
+            </TextFlow>
+            <TextFlow GridPane.columnIndex="3" GridPane.rowIndex="1">
+               <children>
+                  <Text fx:id="bossWinText" strokeType="OUTSIDE" strokeWidth="0.0" text="55" />
+                  <Text strokeType="OUTSIDE" strokeWidth="0.0" text=" (" />
+                  <Text fx:id="bossWinDiffText" strokeType="OUTSIDE" strokeWidth="0.0" text="+19" />
+                  <Text strokeType="OUTSIDE" strokeWidth="0.0" text=")" />
+               </children>
+               <GridPane.margin>
+                  <Insets bottom="5.0" left="5.0" right="5.0" top="5.0" />
+               </GridPane.margin>
+            </TextFlow>
+         </children>
+      </GridPane>
+      <Button layoutX="186.0" layoutY="199.0" mnemonicParsing="false" onAction="#handleResetButtonAction" text="カウンタリセット" />
+      <Button fx:id="saveButton" disable="true" layoutX="123.0" layoutY="199.0" mnemonicParsing="false" onAction="#handleSaveButtonAction" text="セーブ" />
+   </children>
+</AnchorPane>
