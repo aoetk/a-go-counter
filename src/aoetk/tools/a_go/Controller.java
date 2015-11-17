@@ -8,10 +8,18 @@ import javafx.scene.control.RadioButton;
 import javafx.scene.control.ToggleGroup;
 import javafx.scene.text.Text;
 
+import java.io.BufferedWriter;
+import java.io.IOException;
+import java.io.InputStream;
 import java.net.URL;
+import java.nio.file.Files;
+import java.nio.file.Path;
+import java.nio.file.Paths;
+import java.util.Properties;
 import java.util.ResourceBundle;
-import java.util.prefs.BackingStoreException;
 import java.util.prefs.Preferences;
+
+import static java.nio.file.StandardOpenOption.*;
 
 public class Controller implements Initializable {
 
@@ -24,6 +32,8 @@ public class Controller implements Initializable {
     public static final String KEY_BOSS_WIN = "bossWin";
 
     private static final String DIFF_FORMAT = "%+d";
+
+    private static final String PROP_FILE_NAME = "a-go.properties";
 
     @FXML
     Button saveButton;
@@ -62,13 +72,17 @@ public class Controller implements Initializable {
 
     private Preferences preferences;
 
+    private Properties appProperties = new Properties();
+
     @Override
     public void initialize(URL location, ResourceBundle resources) {
-        preferences = Preferences.userNodeForPackage(Controller.class);
-        record = new Record(preferences.getInt(KEY_SALLY, 0),
-                preferences.getInt(KEY_S_WIN, 0),
-                preferences.getInt(KEY_BOSS_ACCESSION, 0),
-                preferences.getInt(KEY_BOSS_WIN, 0));
+        loadConf();
+        record = new Record(
+                Integer.valueOf(appProperties.getProperty(KEY_SALLY, "0")),
+                Integer.valueOf(appProperties.getProperty(KEY_S_WIN, "0")),
+                Integer.valueOf(appProperties.getProperty(KEY_BOSS_ACCESSION, "0")),
+                Integer.valueOf(appProperties.getProperty(KEY_BOSS_WIN, "0"))
+        );
 
         ToggleGroup toggleGroup = new ToggleGroup();
         normalRadio.setToggleGroup(toggleGroup);
@@ -103,14 +117,30 @@ public class Controller implements Initializable {
     }
 
     public void handleSaveButtonAction(ActionEvent event) {
-        try {
-            preferences.putInt(KEY_SALLY, record.getSally());
-            preferences.putInt(KEY_S_WIN, record.getSWin());
-            preferences.putInt(KEY_BOSS_ACCESSION, record.getBossAccession());
-            preferences.putInt(KEY_BOSS_WIN, record.getBossWin());
-            preferences.flush();
-            saveButton.setDisable(true);
-        } catch (BackingStoreException e) {
+        saveConf();
+        saveButton.setDisable(true);
+    }
+
+    private void loadConf() {
+        Path filePath = Paths.get(PROP_FILE_NAME);
+        if (Files.exists(filePath)) {
+            try (InputStream inputStream = Files.newInputStream(filePath)) {
+                appProperties.load(inputStream);
+            } catch (Exception e) {
+                e.printStackTrace();
+            }
+        }
+    }
+
+    private void saveConf() {
+        Path filePath = Paths.get(PROP_FILE_NAME);
+        try (BufferedWriter writer = Files.newBufferedWriter(filePath, CREATE, TRUNCATE_EXISTING, WRITE)) {
+            appProperties.setProperty(KEY_SALLY, String.valueOf(record.getSally()));
+            appProperties.setProperty(KEY_S_WIN, String.valueOf(record.getSWin()));
+            appProperties.setProperty(KEY_BOSS_ACCESSION, String.valueOf(record.getBossAccession()));
+            appProperties.setProperty(KEY_BOSS_WIN, String.valueOf(record.getBossWin()));
+            appProperties.store(writer, "A-go record.");
+        } catch (IOException e) {
             e.printStackTrace();
         }
     }
