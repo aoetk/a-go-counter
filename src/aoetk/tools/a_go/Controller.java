@@ -17,7 +17,6 @@ import java.nio.file.Path;
 import java.nio.file.Paths;
 import java.util.Properties;
 import java.util.ResourceBundle;
-import java.util.prefs.Preferences;
 
 import static java.nio.file.StandardOpenOption.*;
 
@@ -69,8 +68,6 @@ public class Controller implements Initializable {
     Text bossWinDiffText;
 
     private Record record;
-
-    private Preferences preferences;
 
     private Properties appProperties = new Properties();
 

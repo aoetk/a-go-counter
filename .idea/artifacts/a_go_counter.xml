@@ -1,5 +1,5 @@
 <component name="ArtifactManager">
-  <artifact type="javafx" build-on-make="true" name="a-go-counter">
+  <artifact type="javafx" name="a-go-counter">
     <output-path>$PROJECT_DIR$/out/artifacts/a_go_counter</output-path>
     <properties id="javafx-properties">
       <options>
