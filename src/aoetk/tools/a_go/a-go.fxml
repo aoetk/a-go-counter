@@ -66,9 +66,9 @@
             </HBox>
             <HBox alignment="CENTER" spacing="5.0">
                <children>
-                  <Button mnemonicParsing="false" onAction="#handleLooseButtonAction" prefHeight="26.0" prefWidth="53.0" text="敗北" />
-                  <Button mnemonicParsing="false" onAction="#handleWinButtonAction" prefHeight="26.0" prefWidth="53.0" text="勝利" />
-                  <Button mnemonicParsing="false" onAction="#handleSWinButtonAction" text="S勝利" />
+                  <Button mnemonicParsing="false" onAction="#handleLooseButtonAction" prefWidth="53.0" text="敗北" />
+                  <Button mnemonicParsing="false" onAction="#handleWinButtonAction" prefWidth="53.0" text="勝利" />
+                  <Button mnemonicParsing="false" onAction="#handleSWinButtonAction" prefWidth="53.0" text="S勝利" />
                </children>
                <VBox.margin>
                   <Insets top="10.0" />
@@ -159,7 +159,7 @@
       </VBox>
    </center>
    <bottom>
-      <HBox alignment="CENTER" prefHeight="18.0" prefWidth="430.0" spacing="10.0" BorderPane.alignment="CENTER">
+      <HBox alignment="CENTER" prefHeight="18.0" prefWidth="430.0" spacing="5.0" BorderPane.alignment="CENTER">
          <children>
             <Button fx:id="saveButton" disable="true" mnemonicParsing="false" onAction="#handleSaveButtonAction" text="セーブ" />
             <Button mnemonicParsing="false" onAction="#handleResetButtonAction" text="カウンタリセット" />
