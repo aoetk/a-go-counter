@@ -17,7 +17,7 @@
 <?import javafx.scene.text.Text?>
 <?import javafx.scene.text.TextFlow?>
 
-<BorderPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="255.0" prefWidth="430.0" xmlns="http://javafx.com/javafx/9" xmlns:fx="http://javafx.com/fxml/1" fx:controller="aoetk.tools.a_go.Controller">
+<BorderPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" xmlns="http://javafx.com/javafx/9" xmlns:fx="http://javafx.com/fxml/1" fx:controller="aoetk.tools.a_go.Controller">
    <top>
       <VBox BorderPane.alignment="CENTER">
          <children>
@@ -26,11 +26,11 @@
                 <Menu mnemonicParsing="false" text="File">
                   <items>
                         <MenuItem mnemonicParsing="false" text="Open" />
-                        <MenuItem fx:id="saveMenu" disable="true" mnemonicParsing="false" text="Save" onAction="#handleSaveButtonAction">
+                        <MenuItem fx:id="saveMenu" disable="true" mnemonicParsing="false" onAction="#handleSaveButtonAction" text="Save">
                            <accelerator>
                               <KeyCodeCombination alt="UP" code="S" control="UP" meta="UP" shift="UP" shortcut="DOWN" />
                            </accelerator></MenuItem>
-                    <MenuItem mnemonicParsing="false" text="Close" onAction="#handleQuitButtonAction">
+                    <MenuItem mnemonicParsing="false" onAction="#handleQuitButtonAction" text="Close">
                            <accelerator>
                               <KeyCodeCombination alt="UP" code="Q" control="UP" meta="UP" shift="UP" shortcut="DOWN" />
                            </accelerator></MenuItem>
