@@ -1,9 +1,11 @@
 package aoetk.tools.a_go;
 
+import javafx.application.Platform;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
 import javafx.scene.control.Button;
+import javafx.scene.control.MenuItem;
 import javafx.scene.control.RadioButton;
 import javafx.scene.control.ToggleGroup;
 import javafx.scene.text.Text;
@@ -33,6 +35,9 @@ public class Controller implements Initializable {
     private static final String DIFF_FORMAT = "%+d";
 
     private static final String PROP_FILE_NAME = "a-go.properties";
+
+    @FXML
+    MenuItem saveMenu;
 
     @FXML
     Button saveButton;
@@ -94,7 +99,7 @@ public class Controller implements Initializable {
         sWinDiffText.textProperty().bind(record.sWinDiffProperty().asString(DIFF_FORMAT));
         bossAccessionDiffText.textProperty().bind(record.bossAccessionDiffProperty().asString(DIFF_FORMAT));
         bossWinDiffText.textProperty().bind(record.bossWinDiffProperty().asString(DIFF_FORMAT));
-        record.sallyProperty().addListener(observable -> saveButton.setDisable(false));
+        record.sallyProperty().addListener(observable -> toDisableSave(false));
     }
 
     public void handleLooseButtonAction(ActionEvent event) {
@@ -115,7 +120,11 @@ public class Controller implements Initializable {
 
     public void handleSaveButtonAction(ActionEvent event) {
         saveConf();
-        saveButton.setDisable(true);
+        toDisableSave(true);
+    }
+
+    public void handleQuitButtonAction(ActionEvent event) {
+        Platform.exit();
     }
 
     private void loadConf() {
@@ -140,6 +149,11 @@ public class Controller implements Initializable {
         } catch (IOException e) {
             e.printStackTrace();
         }
+    }
+
+    private void toDisableSave(boolean disableSave) {
+        saveButton.setDisable(disableSave);
+        saveMenu.setDisable(disableSave);
     }
 
 }
