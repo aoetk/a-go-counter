@@ -1,5 +1,6 @@
 package aoetk.tools.a_go;
 
+import aoetk.tools.a_go.model.Record;
 import org.junit.Test;
 
 import static org.hamcrest.core.Is.is;

@@ -1,5 +1,6 @@
-package aoetk.tools.a_go;
+package aoetk.tools.a_go.view;
 
+import aoetk.tools.a_go.model.Record;
 import javafx.application.Platform;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;

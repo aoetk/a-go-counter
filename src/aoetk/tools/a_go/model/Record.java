@@ -1,4 +1,4 @@
-package aoetk.tools.a_go;
+package aoetk.tools.a_go.model;
 
 import javafx.beans.property.ReadOnlyIntegerProperty;
 import javafx.beans.property.ReadOnlyIntegerWrapper;
