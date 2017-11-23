@@ -4,5 +4,5 @@ module aoetk.tools.a_go {
     requires javafx.graphics;
     requires java.prefs;
     exports aoetk.tools.a_go;
-    opens aoetk.tools.a_go to javafx.fxml;
+    opens aoetk.tools.a_go.view to javafx.fxml;
 }

@@ -41,7 +41,9 @@ public class ApplicationContext {
         try {
             preferences.putDouble(stageX.getName(), stageX.get());
             preferences.putDouble(stageY.getName(), stageY.get());
-            preferences.put("saveFilePath", saveFilePath.toURI().toString());
+            if (saveFilePath != null) {
+                preferences.put("saveFilePath", saveFilePath.toURI().toString());
+            }
             preferences.flush();
         } catch (BackingStoreException e) {
             e.printStackTrace();
