@@ -157,4 +157,10 @@ public class Controller implements Initializable {
         saveMenu.setDisable(disableSave);
     }
 
+    public void handleOpenButtonAction(ActionEvent event) {
+    }
+
+    public void handleSaveAsButtonAction(ActionEvent event) {
+    }
+
 }
