@@ -28,13 +28,13 @@ import static java.nio.file.StandardOpenOption.*;
 
 public class Controller implements Initializable {
 
-    public static final String KEY_SALLY = "sally";
+    private static final String KEY_SALLY = "sally";
 
-    public static final String KEY_S_WIN = "sWin";
+    private static final String KEY_S_WIN = "sWin";
 
-    public static final String KEY_BOSS_ACCESSION = "bossAccession";
+    private static final String KEY_BOSS_ACCESSION = "bossAccession";
 
-    public static final String KEY_BOSS_WIN = "bossWin";
+    private static final String KEY_BOSS_WIN = "bossWin";
 
     private static final String DIFF_FORMAT = "%+d";
 
@@ -74,7 +74,7 @@ public class Controller implements Initializable {
     @FXML
     Text bossWinDiffText;
 
-    private Record record;
+    private Record record = new Record();
 
     private Properties appProperties = new Properties();
 
@@ -83,12 +83,6 @@ public class Controller implements Initializable {
     @Override
     public void initialize(URL location, ResourceBundle resources) {
         loadConf();
-        record = new Record(
-                Integer.valueOf(appProperties.getProperty(KEY_SALLY, "0")),
-                Integer.valueOf(appProperties.getProperty(KEY_S_WIN, "0")),
-                Integer.valueOf(appProperties.getProperty(KEY_BOSS_ACCESSION, "0")),
-                Integer.valueOf(appProperties.getProperty(KEY_BOSS_WIN, "0"))
-        );
 
         ToggleGroup toggleGroup = new ToggleGroup();
         normalRadio.setToggleGroup(toggleGroup);
@@ -104,6 +98,15 @@ public class Controller implements Initializable {
         bossAccessionDiffText.textProperty().bind(record.bossAccessionDiffProperty().asString(DIFF_FORMAT));
         bossWinDiffText.textProperty().bind(record.bossWinDiffProperty().asString(DIFF_FORMAT));
         record.sallyProperty().addListener(observable -> toDisableSave(false));
+    }
+
+    private Record.Data createDataFromAppProperties() {
+        return new Record.Data(
+                Integer.valueOf(appProperties.getProperty(KEY_SALLY, "0")),
+                Integer.valueOf(appProperties.getProperty(KEY_S_WIN, "0")),
+                Integer.valueOf(appProperties.getProperty(KEY_BOSS_ACCESSION, "0")),
+                Integer.valueOf(appProperties.getProperty(KEY_BOSS_WIN, "0"))
+        );
     }
 
     public void handleLooseButtonAction(ActionEvent event) {
@@ -140,6 +143,7 @@ public class Controller implements Initializable {
             if (Files.exists(filePath)) {
                 try (InputStream inputStream = Files.newInputStream(filePath)) {
                     appProperties.load(inputStream);
+                    record.setData(createDataFromAppProperties());
                 } catch (Exception e) {
                     e.printStackTrace();
                 }

@@ -32,19 +32,30 @@ public class Record {
 
     private ReadOnlyIntegerWrapper bossWinDiff = new ReadOnlyIntegerWrapper(-BOSS_WIN_GOAL);
 
+    private Data data;
+
     public Record() {
         sallyDiff.bind(sally.add(-SALLY_GOAL));
         sWinDiff.bind(sWin.add(-S_WIN_GOAL));
         bossAccessionDiff.bind(bossAccession.add(-BOSS_ACCESSION_GOAL));
         bossWinDiff.bind(bossWin.add(-BOSS_WIN_GOAL));
+        createOwnData();
     }
 
-    public Record(int sally, int sWin, int bossAccession, int bossWin) {
-        this();
-        this.sally.set(sally);
-        this.sWin.set(sWin);
-        this.bossAccession.set(bossAccession);
-        this.bossWin.set(bossWin);
+    private void createOwnData() {
+        this.data = new Data(sally.get(), sWin.get(), bossAccession.get(), bossWin.get());
+    }
+
+    public Data getData() {
+        return data;
+    }
+
+    public void setData(Data data) {
+        this.sally.set(data.sally);
+        this.sWin.set(data.sWin);
+        this.bossAccession.set(data.bossAccession);
+        this.bossWin.set(data.bossWin);
+        this.data = data;
     }
 
     public int getSally() {
@@ -116,6 +127,7 @@ public class Record {
         if (boss) {
             bossAccession.set(getBossAccession() + 1);
         }
+        createOwnData();
     }
 
     public void win(boolean boss) {
@@ -124,6 +136,7 @@ public class Record {
             bossAccession.set(getBossAccession() + 1);
             bossWin.set(getBossWin() + 1);
         }
+        createOwnData();
     }
 
     public void sWin(boolean boss) {
@@ -133,6 +146,7 @@ public class Record {
             bossAccession.set(getBossAccession() + 1);
             bossWin.set(getBossWin() + 1);
         }
+        createOwnData();
     }
 
     public void reset() {
@@ -140,6 +154,36 @@ public class Record {
         sWin.set(0);
         bossAccession.set(0);
         bossWin.set(0);
+        createOwnData();
+    }
+
+    /**
+     * 出撃記録のデータオブジェクト.
+     */
+    public static class Data {
+
+        final int sally;
+
+        final int sWin;
+
+        final int bossAccession;
+
+        final int bossWin;
+
+        /**
+         * 初期化する. 一度初期化すると値を変えることはできない.
+         *
+         * @param sally 出撃回数
+         * @param sWin S勝利回数
+         * @param bossAccession ボス戦回数
+         * @param bossWin ボス勝利回数
+         */
+        public Data(int sally, int sWin, int bossAccession, int bossWin) {
+            this.sally = sally;
+            this.sWin = sWin;
+            this.bossAccession = bossAccession;
+            this.bossWin = bossWin;
+        }
     }
 
 }

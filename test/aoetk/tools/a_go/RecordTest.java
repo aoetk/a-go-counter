@@ -23,7 +23,8 @@ public class RecordTest {
 
     @Test
     public void testInitWithParam() throws Exception {
-        Record sut = new Record(55, 44, 13, 13);
+        Record sut = new Record();
+        sut.setData(new Record.Data(55, 44, 13, 13));
         assertThat(sut.getSally(), is(55));
         assertThat(sut.getSWin(), is(44));
         assertThat(sut.getBossAccession(), is(13));
